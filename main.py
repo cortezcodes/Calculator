@@ -23,7 +23,7 @@ class MainWindow(QWidget):
         calculator_layout = QGridLayout()
         
         #Create list of buttons 
-        btns = ["AC", "C", "CE", "/", "7", "8", "9", "*","4", "5", "6", "-","1", "2", "3", "+","+/-", "0", ".", "="]
+        btns = ["AC", "C", "DEL", "/", "7", "8", "9", "*","4", "5", "6", "-","1", "2", "3", "+","+/-", "0", ".", "="]
         row = 1
         col = 0
         output = QLineEdit()
@@ -55,6 +55,10 @@ class Button:
     def pressed(self, text, output):
         if text == "=":
             output.setText(str(eval(output.text())))
+        elif text == "AC" or text == "C":
+            output.setText("")
+        elif text == "DEL":
+            output.setText(output.text()[:-1])
         else:
             output.setText(output.text() + text)
 
